@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pour toi... 🌹</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6e6;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container { padding: 20px; position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+        #yesBtn { background-color: #4CAF50; color: white; border: none; padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 50px; transition: 0.2s; z-index: 100; }
+        #noBtn { background-color: #f44336; color: white; border: none; padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 50px; position: absolute; transition: 0.1s; z-index: 10; }
+        img { width: 200px; height: auto; margin-bottom: 20px; border-radius: 15px; }
+        h1 { font-size: 1.5rem; color: #d63384; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <img id="gif" src="https://media.tenor.com/979v_V0eU70AAAAC/brown-and-cony-bear.gif" alt="ours mignon">
+        <h1 id="question">Veux-tu être ma Valentine ? 🌹</h1>
+        <div style="height: 100px; width: 100%; display: flex; justify-content: center; align-items: center;">
+            <button id="yesBtn" onclick="celebrate()">Oui</button>
+            <button id="noBtn" onclick="moveButton()" onmouseover="moveButton()">Non</button>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        function moveButton() {
+            clickCount++;
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+           
+            // On déplace le bouton Non dans une zone safe
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 100);
+           
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+
+            // Le bouton OUI grossit TRÈS VITE
+            const newSize = 18 + (clickCount * 25);
+            yesBtn.style.fontSize = newSize + 'px';
+            yesBtn.style.padding = (15 + clickCount * 10) + 'px ' + (30 + clickCount * 15) + 'px';
+
+            // Textes rigolots
+            const phrases = ["Sûre ?", "Vraiment ?", "Réfléchis...", "Allez !", "Regarde le gros bouton !", "Clic sur OUI !"];
+            noBtn.innerText = phrases[Math.min(clickCount, phrases.length - 1)];
+        }
+
+        function celebrate() {
+            document.getElementById('main-container').innerHTML = `
+                <img src="https://media.tenor.com/B7_95vY_7m4AAAAC/milk-and-mocha-hug.gif">
+                <h1>OUIIIII ! ❤️ Je t'aime ! ❤️</h1>
+            `;
+        }
+    </script>
+</body>
+</html>
